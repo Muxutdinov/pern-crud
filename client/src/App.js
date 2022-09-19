@@ -1,9 +1,11 @@
 import React from "react";
+import "./App.css";
+import InputTodo from "./components/InputTodo";
 
 const App = () => {
   return (
-    <div>
-      <h1>Hello from Jaxongir</h1>
+    <div className="App">
+      <InputTodo />
     </div>
   );
 };

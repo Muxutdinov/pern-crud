@@ -9,7 +9,6 @@ app.use(cors());
 app.use(express.json());
 
 //use Router
-app.use('/api', require('./routes'))
-
+app.use("/api", require("./routes"));
 
 app.listen(4000, () => console.log(`Server run on port ${PORT}`));
