@@ -1,11 +1,15 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./App.css";
 import InputTodo from "./components/InputTodo";
+import ListTodos from "./components/ListTodos";
 
 const App = () => {
   return (
     <div className="App">
-      <InputTodo />
+      <Fragment>
+        <InputTodo />
+        <ListTodos />
+      </Fragment>
     </div>
   );
 };

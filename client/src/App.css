@@ -4,7 +4,11 @@
   box-sizing: border-box;
 }
 .App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  padding: 0% 20% 0 20%;
+}
+@media only screen and (max-width: 600px) {
+  .App {
+    padding: 0% 5% 0 5%;
+  }
 }
