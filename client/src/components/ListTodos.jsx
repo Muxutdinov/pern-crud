@@ -38,7 +38,7 @@ const ListTodos = () => {
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>
-                  <EditTodo />
+                  <EditTodo item={item} />
                 </td>
                 <td>
                   <button
