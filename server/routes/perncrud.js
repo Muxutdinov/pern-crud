@@ -42,13 +42,23 @@ router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
     const oldData = await pool.query("SELECT * FROM pern WHERE id = $1", [id]);
-    const update = await pool.query(
-      "UPDATE pern SET title = $1 WHERE id = $2",
-      [title ? title : oldData.rows[0].title, id]
-    );
-    return res
-      .status(201)
-      .json({ message: `Title was updated! with id: ${id}` });
+    const allData = await pool.query("SELECT * FROM pern");
+    let dataRight = false;
+    allData.rows.map((value) => {
+      if (value.id === id) {
+        dataRight = true;
+      }
+    });
+    if (dataRight === true) {
+      const update = await pool.query(
+        "UPDATE pern SET title = $1 WHERE id = $2",
+        [title ? title : oldData.rows[0].title, id]
+      );
+      return res
+        .status(201)
+        .json({ message: `Title was updated! with id: ${id}` });
+    }
+    return res.status(404).json({ message: `Bu id:${id} lik data topilmadi!` });
   } catch (error) {
     console.log(error.message);
   }
