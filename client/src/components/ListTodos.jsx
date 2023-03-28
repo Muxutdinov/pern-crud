@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
+import axios from "axios";
 
 const ListTodos = () => {
   const [title, setTitle] = useState([]);
   const getData = async () => {
-    const res = await fetch("http://localhost:4000/api/perncrud");
-    const Data = await res.json();
-    setTitle(Data);
+    await axios
+      .get("http://localhost:4000/api/perncrud")
+      .then((res) => setTitle(res.data));
   };
   useEffect(() => {
     getData();
   }, []);
   const onDelete = async (id) => {
-    const deleteTitle = await fetch(
+    await fetch(
       `http://localhost:4000/api/perncrud/${id}`,
       {
         method: "DELETE",

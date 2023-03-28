@@ -44,6 +44,11 @@ router.put("/:id", async (req, res) => {
     const oldData = await pool.query("SELECT * FROM pern WHERE id = $1", [id]);
     const allData = await pool.query("SELECT * FROM pern");
     let dataRight = false;
+    if(!title){
+      return res
+      .status(400)
+      .json({ message: `Title is required` });
+    }
     allData.rows.map((value) => {
       if (value.id === id) {
         dataRight = true;

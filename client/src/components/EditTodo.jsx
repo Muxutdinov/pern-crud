@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import axios from 'axios'
+
 
 const EditTodo = ({ item }) => {
   const [title, setTitle] = useState(item.title);
+  console.log(title);
   const onUpdate = async (e) => {
     e.preventDefault();
     try {
-      const body = { title };
-      const res = await fetch(`http://localhost:4000/api/perncrud/${item.id}`, {
-        method: "PUT",
-        headers: { "Content-type": "aplication/json" },
-        body: JSON.stringify(body),
-      });
+      const body = JSON.stringify({title})
+      await axios.put(`http://localhost:4000/api/perncrud/${item.id}`, body ,{
+        headers:{
+          'Content-Type':'application/json'
+        }
+      })
       window.location = "/";
     } catch (error) {
       console.log(error.message);
@@ -53,7 +56,7 @@ const EditTodo = ({ item }) => {
                 type="button"
                 className="btn btn-warning"
                 data-bs-dismiss="modal"
-                onClick={(e) => onUpdate(e)}
+                onClick={(e)=>onUpdate(e)}
               >
                 Update
               </button>
